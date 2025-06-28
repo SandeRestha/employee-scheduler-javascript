@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Shift Scheduler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Employee Shift Scheduler</h1>
+        </header>
+
+        <main>
+            <section class="input-section card">
+                <h2>Employee Input</h2>
+                <div class="employee-name-input">
+                    <label for="employee-name">Name:</label>
+                    <input type="text" id="employee-name" placeholder="Enter employee name" required>
+                </div>
+                <div id="status-message" class="status-message"></div>
+
+                <div class="preferences-container">
+                    <div class="preference-table">
+                        <div class="table-header">
+                            <span class="header-day">Day</span>
+                            <span class="header-shift">Morning</span>
+                            <span class="header-shift">Afternoon</span>
+                            <span class="header-shift">Evening</span>
+                        </div>
+                        <div id="preference-input-rows">
+                            </div>
+                    </div>
+                    
+                    <div class="priority-legend">
+                        <h4>Priority Legend</h4>
+                        <p><strong>1</strong> - Highest Preference</p>
+                        <p><strong>2</strong> - Medium Preference</p>
+                        <p><strong>3</strong> - Lowest Preference<br>(Assigned if no other option)</p>
+                    </div>
+                </div>
+                
+                <div class="button-group centered-buttons">
+                    <button class="btn btn-add" onclick="addEmployee()">Add Employee</button>
+                    <button class="btn btn-edit" onclick="openEditEmployeeModal()">Edit/Remove Employees</button>
+                </div>
+            </section>
+
+            <div class="main-action-buttons">
+                <button class="btn btn-generate" onclick="generateSchedule()">
+                    Generate Schedule
+                    <span id="loading-spinner" class="spinner"></span>
+                </button>
+                <button class="btn btn-view" onclick="viewSchedule()">View Current Schedule</button>
+                <button class="btn btn-export" onclick="exportSchedule()">Export Schedule</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeEditEmployeeModal()">&times;</span>
+            <h3>Edit/Remove Employees</h3>
+            <div id="edit-employee-list">
+                </div>
+            <p id="no-employees-message" style="display:none;">No employees to edit.</p>
+        </div>
+    </div>
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close-button" onclick="closeScheduleModal()">&times;</span>
+            <h3>Weekly Schedule</h3>
+            <div id="schedule-display">
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
