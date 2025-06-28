@@ -1,4 +1,13 @@
-/* General Body and Layout */
+/*
+ * =============================================================================
+ * Global Styles and Page Structure
+ * =============================================================================
+ */
+
+/*
+ * Sets up the main page layout, including the font, background color, and
+ * uses Flexbox to center the content.
+ */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f7f6;
@@ -12,13 +21,26 @@ body {
     min-height: 100vh;
 }
 
+/*
+ * Defines the main content area's maximum width to ensure readability on
+ * large screens and centers it on the page.
+ */
 .container {
-    max-width: 950px; /* Slightly wider container */
+    max-width: 950px;
     width: 100%;
     margin: auto;
 }
 
-/* Header */
+/*
+ * =============================================================================
+ * Header and Section Cards
+ * =============================================================================
+ */
+
+/*
+ * Styles the header as a distinct, elevated card with a shadow and rounded
+ * corners.
+ */
 header {
     text-align: center;
     margin-bottom: 40px;
@@ -28,6 +50,9 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
+/*
+ * Styles the main headings and titles within the header and other sections.
+ */
 header h1 {
     margin: 0;
     color: #0056b3;
@@ -41,7 +66,10 @@ header p {
     font-size: 1.1em;
 }
 
-/* Cards (for sections) */
+/*
+ * Applies a consistent "card" style to major UI sections, giving them a
+ * clean background, rounded corners, and a subtle shadow.
+ */
 .card {
     background-color: #fff;
     padding: 30px;
@@ -50,7 +78,10 @@ header p {
     margin-bottom: 30px;
 }
 
-/* Input Section */
+/*
+ * Styles the headings for different sections of the application,
+ * adding a colored line to separate them.
+ */
 .input-section h2, .output-section h2, .modal-content h3 {
     color: #0056b3;
     border-bottom: 2px solid #e9ecef;
@@ -59,16 +90,20 @@ header p {
     margin-bottom: 25px;
 }
 
+/*
+ * =============================================================================
+ * Form and Input Element Styles
+ * =============================================================================
+ */
+
+/*
+ * Styles the input field for the employee's name, including its
+ * focus state.
+ */
 .employee-name-input {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.employee-name-input label {
-    font-size: 1em;
-    font-weight: bold;
-    width: 80px; /* Fixed width for label */
 }
 
 input[type="text"] {
@@ -86,21 +121,28 @@ input[type="text"]:focus {
     outline: none;
 }
 
+/*
+ * Styles the container that holds the shift preference grid and the
+ * priority legend, using a Flexbox layout.
+ */
 .preferences-container {
     display: flex;
-    gap: 30px; /* Increased gap */
-    background-color: #f0f0f0; /* Grey background for the container */
+    gap: 30px;
+    background-color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
 }
 
+/*
+ * Defines the grid layout for the shift preference table.
+ */
 .preference-table {
     flex-grow: 1;
 }
 
 .table-header {
     display: grid;
-    grid-template-columns: 100px repeat(3, 1fr); /* Adjust grid columns for alignment */
+    grid-template-columns: 100px repeat(3, 1fr);
     font-weight: bold;
     font-size: 0.9em;
     padding-bottom: 10px;
@@ -116,6 +158,10 @@ input[type="text"]:focus {
     text-align: center;
 }
 
+/*
+ * Styles each row in the preference grid, including the day label and
+ * priority dropdowns.
+ */
 .preference-row {
     display: grid;
     grid-template-columns: 100px repeat(3, 1fr);
@@ -128,10 +174,9 @@ input[type="text"]:focus {
     border-bottom: none;
 }
 
-.preference-row span {
-    padding-left: 10px;
-}
-
+/*
+ * Styles the priority selection dropdown menus within the grid.
+ */
 .priority-select {
     padding: 8px;
     border-radius: 6px;
@@ -145,12 +190,16 @@ input[type="text"]:focus {
     text-align: center;
 }
 
+/*
+ * Styles the legend that explains the priority levels, giving it a
+ * fixed width and a card-like appearance.
+ */
 .priority-legend {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
-    width: 250px; /* Fixed width for the legend */
+    width: 250px;
     flex-shrink: 0;
 }
 
@@ -169,7 +218,16 @@ input[type="text"]:focus {
     line-height: 1.4;
 }
 
-/* Buttons */
+/*
+ * =============================================================================
+ * Button Styles
+ * =============================================================================
+ */
+
+/*
+ * General styles for all buttons, defining their padding, font, and
+ * hover animations.
+ */
 .button-group {
     display: flex;
     justify-content: flex-end;
@@ -177,7 +235,6 @@ input[type="text"]:focus {
     margin-top: 20px;
 }
 
-/* New class for centering buttons */
 .centered-buttons {
     justify-content: center;
 }
@@ -195,6 +252,10 @@ input[type="text"]:focus {
     color: #fff;
 }
 
+/*
+ * Styles for the 'Add' and 'Edit' buttons, including their specific
+ * colors and hover effects.
+ */
 .btn-add, .btn-edit {
     background-color: #4682B4; /* SteelBlue */
 }
@@ -204,6 +265,10 @@ input[type="text"]:focus {
     box-shadow: 0 4px 10px rgba(70, 130, 180, 0.4);
 }
 
+/*
+ * Styles for the main action buttons ('Generate', 'Export', 'View'), making
+ * them larger and more visually prominent.
+ */
 .main-action-buttons {
     display: flex;
     justify-content: center;
@@ -215,10 +280,10 @@ input[type="text"]:focus {
 .btn-generate, .btn-export, .btn-view {
     padding: 15px 35px;
     font-size: 1.1em;
-    background-color: #3683D9; /* Blue shade */
+    background-color: #3683D9;
     box-shadow: 0 6px 15px rgba(54, 131, 217, 0.3);
 }
-/* A slightly different color for the view button for visual distinction */
+
 .btn-view {
     background-color: #17A2B8; /* Info Blue */
 }
@@ -233,7 +298,16 @@ input[type="text"]:focus {
     box-shadow: 0 8px 20px rgba(23, 162, 184, 0.5);
 }
 
-/* Output Section (Schedule Table) - This is now inside the modal */
+/*
+ * =============================================================================
+ * Schedule Table and Modal Styles
+ * =============================================================================
+ */
+
+/*
+ * Styles the schedule table to be clean and modern with rounded corners and a
+ * subtle shadow.
+ */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -245,12 +319,12 @@ table {
 
 th, td {
     padding: 15px;
-    text-align: center; /* Center align all cells */
+    text-align: center;
     border-bottom: 1px solid #e9ecef;
 }
 
 th:first-child, td:first-child {
-    text-align: left; /* Keep the first column (Day/Shift) left-aligned */
+    text-align: left;
 }
 
 th {
@@ -261,6 +335,9 @@ th {
     font-size: 0.9em;
 }
 
+/*
+ * Adds alternating row colors and a hover effect for improved readability.
+ */
 tr:nth-child(even) {
     background-color: #fafcfd;
 }
@@ -273,10 +350,13 @@ td {
     color: #555;
     font-size: 0.9em;
     line-height: 1.4;
-    white-space: pre-wrap; /* Allows names to wrap to a new line */
+    white-space: pre-wrap;
 }
 
-/* Modal Styling */
+/*
+ * Styles the modal popup and its overlay, ensuring it appears on top
+ * of all other content.
+ */
 .modal {
     display: none;
     position: fixed;
@@ -290,6 +370,10 @@ td {
     padding-top: 60px;
 }
 
+/*
+ * Styles the modal's content box, giving it a card-like appearance
+ * with a shadow and rounded corners.
+ */
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -301,8 +385,11 @@ td {
     position: relative;
 }
 
+/*
+ * Modifier class to create a wider modal for displaying the full schedule.
+ */
 .large-modal {
-    max-width: 900px; /* Wider modal for the schedule */
+    max-width: 900px;
 }
 
 .modal-content h3 {
@@ -313,6 +400,9 @@ td {
     margin-bottom: 20px;
 }
 
+/*
+ * Styles the close button for the modal.
+ */
 .close-button {
     color: #aaa;
     float: right;
@@ -330,13 +420,17 @@ td {
     text-decoration: none;
 }
 
+/*
+ * Styles the individual employee items in the 'Edit/Remove' modal,
+ * including their input field and buttons.
+ */
 .edit-employee-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
-    gap: 10px; /* Spacing between input and buttons */
+    gap: 10px;
 }
 
 .edit-employee-item:last-child {
@@ -357,6 +451,10 @@ td {
     margin-top: 0;
 }
 
+/*
+ * Styles the 'Save' and 'Remove' buttons within the edit modal,
+ * with different colors and hover effects.
+ */
 .save-btn, .remove-btn {
     color: white;
     border: none;
@@ -382,7 +480,16 @@ td {
     background-color: #B22222;
 }
 
-/* Status Message Styling */
+/*
+ * =============================================================================
+ * Status Messages and Loading Spinner
+ * =============================================================================
+ */
+
+/*
+ * Styles for temporary status messages that appear at the top of the page,
+ * including different color schemes for success, error, and info messages.
+ */
 .status-message {
     padding: 15px;
     margin-bottom: 15px;
@@ -413,13 +520,20 @@ td {
     border: 1px solid #bee5eb;
 }
 
+/*
+ * Makes a status message visible with a subtle animation when the
+ * `visible` class is added.
+ */
 .status-message.visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-/* Loading Spinner */
+/*
+ * Styles the animated loading spinner that appears on the 'Generate' button
+ * while the schedule is being created.
+ */
 .spinner {
     display: inline-block;
     width: 20px;
@@ -431,9 +545,12 @@ td {
     -webkit-animation: spin 1s ease-in-out infinite;
     margin-left: 10px;
     vertical-align: middle;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
+/*
+ * Defines the animation for the spinner's rotation.
+ */
 @keyframes spin {
     to { -webkit-transform: rotate(360deg); }
 }
@@ -441,7 +558,7 @@ td {
     to { -webkit-transform: rotate(360deg); }
 }
 
+/* Shows the spinner when the 'active' class is added to the button. */
 .btn-generate .spinner.active {
     display: inline-block;
 }
-

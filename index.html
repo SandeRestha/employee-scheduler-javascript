@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags and page title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Shift Scheduler</title>
+    <!-- Google Fonts and CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -11,20 +13,24 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header Section -->
         <header>
             <h1>Employee Shift Scheduler</h1>
         </header>
 
         <main>
+            <!-- Employee Input Section -->
             <section class="input-section card">
                 <h2>Employee Input</h2>
                 <div class="employee-name-input">
                     <label for="employee-name">Name:</label>
                     <input type="text" id="employee-name" placeholder="Enter employee name" required>
                 </div>
+                <!-- Status message for feedback -->
                 <div id="status-message" class="status-message"></div>
 
                 <div class="preferences-container">
+                    <!-- Shift Preferences Table -->
                     <div class="preference-table">
                         <div class="table-header">
                             <span class="header-day">Day</span>
@@ -32,10 +38,12 @@
                             <span class="header-shift">Afternoon</span>
                             <span class="header-shift">Evening</span>
                         </div>
+                        <!-- Rows for user to input preferences -->
                         <div id="preference-input-rows">
                             </div>
                     </div>
                     
+                    <!-- Priority Legend Explanation -->
                     <div class="priority-legend">
                         <h4>Priority Legend</h4>
                         <p><strong>1</strong> - Highest Preference</p>
@@ -44,12 +52,14 @@
                     </div>
                 </div>
                 
+                <!-- Buttons to add or edit employees -->
                 <div class="button-group centered-buttons">
                     <button class="btn btn-add" onclick="addEmployee()">Add Employee</button>
                     <button class="btn btn-edit" onclick="openEditEmployeeModal()">Edit/Remove Employees</button>
                 </div>
             </section>
 
+            <!-- Main action buttons for schedule operations -->
             <div class="main-action-buttons">
                 <button class="btn btn-generate" onclick="generateSchedule()">
                     Generate Schedule
@@ -61,6 +71,7 @@
         </main>
     </div>
 
+    <!-- Modal for editing/removing employees -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeEditEmployeeModal()">&times;</span>
@@ -71,6 +82,7 @@
         </div>
     </div>
 
+    <!-- Modal for displaying the generated schedule -->
     <div id="scheduleModal" class="modal">
         <div class="modal-content large-modal">
             <span class="close-button" onclick="closeScheduleModal()">&times;</span>
@@ -80,6 +92,7 @@
         </div>
     </div>
 
+    <!-- Main JavaScript file -->
     <script src="app.js"></script>
 </body>
 </html>
