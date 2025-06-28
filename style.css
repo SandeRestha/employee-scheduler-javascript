@@ -277,7 +277,7 @@ input[type="text"]:focus {
     margin-bottom: 40px;
 }
 
-.btn-generate, .btn-export, .btn-view {
+.btn-generate, .btn-export, .btn-view, .btn-reset-all {
     padding: 15px 35px;
     font-size: 1.1em;
     background-color: #3683D9;
@@ -296,6 +296,16 @@ input[type="text"]:focus {
 .btn-view:hover {
     background-color: #138496;
     box-shadow: 0 8px 20px rgba(23, 162, 184, 0.5);
+}
+
+/* New styles for the Reset All Data button. */
+.btn-reset-all {
+    background-color: #c0392b; /* A darker red for a destructive action. */
+}
+.btn-reset-all:hover {
+    background-color: #a52820;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(192, 57, 43, 0.5);
 }
 
 /*

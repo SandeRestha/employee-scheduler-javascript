@@ -352,44 +352,38 @@ function assignPriorityShifts(employeesToSchedule, workdays) {
 
 /**
  * Fills remaining schedule slots, prioritizing employees who need more shifts.
+ * This version iterates through days sequentially to find available slots for employees.
  * @param {Array} employeesToSchedule A deep copy of employee data.
  * @param {Map} workdays A map tracking assigned shifts.
  * @returns {Set} A set of employees who could not be fully scheduled.
  */
 function fillRemainingSlots(employeesToSchedule, workdays) {
     const unresolvedEmployees = new Set();
-    const dayIndices = new Map(DAYS.map((day, index) => [day, index]));
-
+    
     employeesToSchedule.forEach(emp => {
         while (workdays.get(emp.name) < MAX_WORKDAYS_PER_WEEK) {
             let assignedThisPass = false;
             
-            // Find days where the employee is not yet scheduled.
-            const unassignedDays = DAYS.filter(day => 
-                !SHIFTS.some(shift => finalSchedule[day][shift].includes(emp.name))
-            );
-            
-            if (unassignedDays.length === 0) {
-                break; // No more days available for this employee.
-            }
-            
-            // Sort unassigned days by the employee's best priority for that day.
-            const sortedUnassignedDays = unassignedDays.sort((d1, d2) => 
-                Math.min(...SHIFTS.map(s => parseInt(emp.preferences[d1][s]))) - 
-                Math.min(...SHIFTS.map(s => parseInt(emp.preferences[d2][s])))
-            );
-            
-            // Try to assign the employee to a preferred shift on an unassigned day.
-            for (const targetDay of sortedUnassignedDays) {
+            // Iterate through days sequentially to find an available slot for the employee.
+            for (const targetDay of DAYS) {
+                // Check if the employee is already assigned a shift on this day.
+                const isAssignedToday = SHIFTS.some(shift => finalSchedule[targetDay][shift].includes(emp.name));
+                if (isAssignedToday) {
+                    continue; // Skip this day if the employee is already assigned a shift.
+                }
+                
+                // Sort shifts for the current day by priority.
                 const sortedShifts = SHIFTS.sort((s1, s2) => 
                     parseInt(emp.preferences[targetDay][s1]) - parseInt(emp.preferences[targetDay][s2])
                 );
+                
+                // Try to assign the employee to a preferred shift on this day.
                 for (const targetShift of sortedShifts) {
                     if (finalSchedule[targetDay][targetShift].length < MAX_EMPLOYEES_PER_SHIFT) {
                         finalSchedule[targetDay][targetShift].push(emp.name);
                         workdays.set(emp.name, workdays.get(emp.name) + 1);
                         assignedThisPass = true;
-                        break;
+                        break; // Move to the next employee if a shift is assigned.
                     }
                 }
                 if (assignedThisPass) break;
@@ -505,7 +499,9 @@ function displaySchedule() {
  * Displays the current schedule if it exists.
  */
 function viewSchedule() {
-    if (Object.keys(finalSchedule).length === 0) {
+    // A robust check for an empty schedule
+    const isScheduleEmpty = Object.keys(finalSchedule).length === 0 || Object.values(finalSchedule).every(day => Object.values(day).every(shift => shift.length === 0));
+    if (isScheduleEmpty) {
         showStatusMessage("Please generate a schedule first.", 'info');
         return;
     }
@@ -517,8 +513,8 @@ function viewSchedule() {
  * Exports the generated schedule to a CSV file.
  */
 function exportSchedule() {
-    if (Object.keys(finalSchedule).length === 0) {
-        showStatusMessage("Please generate a schedule first.", 'info');
+    if (Object.keys(finalSchedule).length === 0 || Object.values(finalSchedule).every(day => Object.values(day).every(shift => shift.length === 0))) {
+        showStatusMessage("No schedule to export. Please generate one first.", 'info');
         return;
     }
 
